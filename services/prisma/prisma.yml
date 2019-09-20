@@ -1,0 +1,17 @@
+# The HTTP endpoint for your Prisma API
+#endpoint: ""
+endpoint: https://us1.prisma.sh/yuqi-liu-2ab885/test-tcbl/dev
+
+# Points to the file that contains your datamodel
+datamodel: datamodel.prisma
+
+# Specifies language & location for the generated Prisma client
+generate:
+  - generator: javascript-client
+    output: ./../src/generated/prisma-client
+
+hooks:
+  post-deploy:
+    - prisma generate
+    - npx nexus-prisma-generate --client ./src/generated/prisma-client --output ./src/generated/nexus-prisma --js # Runs the codegen tool from nexus-prisma.
+
