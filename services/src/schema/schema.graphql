@@ -27,41 +27,7 @@ enum LinkOrderByInput {
   createdAt_ASC
   createdAt_DESC
 }
-
-type Player {
-  id: ID!
-  firstName: String!
-  lastName: String!
-  number: Int!
-}
-
-type Link {
-  id: ID!
-  description: String!
-  url: String!
-  postedBy: User
-  votes: [Vote!]!
-}
-
 type Feed {
   links: [Link!]!
   count: Int!
-}
-
-type AuthPayload {
-  token: String
-  user: User
-}
-
-type User {
-  id: ID!
-  name: String!
-  email: String!
-  links: [Link!]!
-}
-
-type Vote {
-  id: ID!
-  link: Link!
-  user: User!
 }

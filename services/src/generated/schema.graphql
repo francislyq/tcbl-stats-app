@@ -317,6 +317,7 @@ type Mutation {
   deleteTeam(where: TeamWhereUniqueInput!): Team
   deleteUser(where: UserWhereUniqueInput!): User
   deleteVote(where: VoteWhereUniqueInput!): Vote
+  signup(email: String, name: String, password: String): User
   updateLink(data: LinkUpdateInput!, where: LinkWhereUniqueInput!): Link
   updateManyLinks(data: LinkUpdateManyMutationInput!, where: LinkWhereInput): BatchPayload!
   updateManyPlayers(data: PlayerUpdateManyMutationInput!, where: PlayerWhereInput): BatchPayload!
@@ -346,6 +347,7 @@ type Player {
   lastName: String!
   number: Int!
   teams(after: String, before: String, first: Int, last: Int, orderBy: TeamOrderByInput, skip: Int, where: TeamWhereInput): [Team!]
+  uppercaseFirstName: String
 }
 
 type PlayerConnection {

@@ -3,7 +3,7 @@
  * Do not make changes to this file directly
  */
 
-
+import * as types from "../types"
 
 
 declare global {
@@ -1059,6 +1059,7 @@ export interface NexusGenFieldTypes {
     deleteTeam: NexusGenRootTypes['Team'] | null; // Team
     deleteUser: NexusGenRootTypes['User'] | null; // User
     deleteVote: NexusGenRootTypes['Vote'] | null; // Vote
+    signup: NexusGenRootTypes['User'] | null; // User
     updateLink: NexusGenRootTypes['Link'] | null; // Link
     updateManyLinks: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyPlayers: NexusGenRootTypes['BatchPayload']; // BatchPayload!
@@ -1086,6 +1087,7 @@ export interface NexusGenFieldTypes {
     lastName: string; // String!
     number: number; // Int!
     teams: NexusGenRootTypes['Team'][] | null; // [Team!]
+    uppercaseFirstName: string | null; // String
   }
   PlayerConnection: { // field return type
     aggregate: NexusGenRootTypes['AggregatePlayer']; // AggregatePlayer!
@@ -1219,6 +1221,11 @@ export interface NexusGenArgTypes {
     }
     deleteVote: { // args
       where: NexusGenInputs['VoteWhereUniqueInput']; // VoteWhereUniqueInput!
+    }
+    signup: { // args
+      email?: string | null; // String
+      name?: string | null; // String
+      password?: string | null; // String
     }
     updateLink: { // args
       data: NexusGenInputs['LinkUpdateInput']; // LinkUpdateInput!
@@ -1451,7 +1458,7 @@ export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int
 export type NexusGenUnionNames = never;
 
 export interface NexusGenTypes {
-  context: any;
+  context: types.Context;
   inputTypes: NexusGenInputs;
   rootTypes: NexusGenRootTypes;
   argTypes: NexusGenArgTypes;

@@ -6,18 +6,9 @@ import * as path from "path";
 import datamodelInfo from "./generated/nexus-prisma";
 import * as allTypes from "./resolvers";
 
-const Query = prismaObjectType({
-  name: "Query",
-  definition: t => t.prismaFields(["*"])
-});
-const Mutation = prismaObjectType({
-  name: "Mutation",
-  definition: t => t.prismaFields(["*"])
-});
-
 const schema = makePrismaSchema({
   // Provide all the GraphQL types we've implemented
-  types: [Query, Mutation, allTypes],
+  types: [allTypes],
 
   // Configure the interface to Prisma
   prisma: {
@@ -35,18 +26,18 @@ const schema = makePrismaSchema({
   nonNullDefaults: {
     input: false,
     output: false
-  }
+  },
 
   // Configure automatic type resolution for the TS representations of the associated types
-  // typegenAutoConfig: {
-  //   sources: [
-  //     {
-  //       source: path.join(__dirname, "./types.js"),
-  //       alias: "types"
-  //     }
-  //   ],
-  //   contextType: "types.Context"
-  // }
+  typegenAutoConfig: {
+    sources: [
+      {
+        source: path.join(__dirname, "./types.ts"),
+        alias: "types"
+      }
+    ],
+    contextType: "types.Context"
+  }
 });
 
 const server = new GraphQLServer({
